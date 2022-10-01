@@ -16,8 +16,10 @@ public class OrganizerService {
     public List<Path> listFiles (Path path){
         List<Path> files = new ArrayList<>();
 
-        try (DirectoryStream stream = Files.newDirectoryStream(path, "*.{cbz, cbr}")) {
-
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(path, "*.{cbz, cbr}")){
+            stream.forEach(entry->{
+                files.add(entry);
+            });
 
         } catch (IOException e) {
             // TODO Auto-generated catch block
